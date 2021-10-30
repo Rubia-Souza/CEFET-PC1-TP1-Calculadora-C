@@ -7,8 +7,8 @@
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
-                "${fileDirname}\\utils\\constants.h",
-                "${fileDirname}\\utils\\constants.c",
+                "${fileDirname}\\utils\\*.h",
+                "${fileDirname}\\utils\\*.c",
                 "${file}",
                 "-o",
                 "${fileDirname}\\${fileBasenameNoExtension}.exe",
