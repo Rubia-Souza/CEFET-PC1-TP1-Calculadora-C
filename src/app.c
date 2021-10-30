@@ -5,18 +5,22 @@
 #include "utils/constants.h"
 #include "utils/converters.h"
 
+// Calculo é executado segundo a ordem de escrita de NUM OP NUM. Se não ouver um NUM ele é considerado 0.
 int main() {
     char expression[EXPRESSION_SIZE] = "";
-    char formattedExpression[EXPRESSION_SIZE] = "";
-    int filledSize = 0;
 
-    printf("===== CALCULADORA TP1 =====\n\n");
+    printf("===== CALCULADORA TP1 - Rúbia Alice =====\n\n");
 
     printf("Digite a expressão: ");
     fgets(expression, EXPRESSION_SIZE, stdin);
     printf("\n");
 
-    extractExpression(expression);
+    double firstNumber = 0, secondNumber = 0;
+    char operation;
+
+    extractMathematicalExpression(expression, &firstNumber, &operation, &secondNumber);
+
+    printf("Operação: %f%c%f", firstNumber, operation, secondNumber);
 
     return 0;
 }

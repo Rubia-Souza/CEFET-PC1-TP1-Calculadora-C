@@ -1,9 +1,11 @@
+#include <cstdio>
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+
 #include "constants.h"
 #include "converters.h"
-# include "utils.h"
+#include "utils.h"
 
 int findOperationSign(const char expression[EXPRESSION_SIZE], const int size);
 void splitExpressionByOperator(const char expression[EXPRESSION_SIZE], const int operatorIndex, const int size, char outFirstNumber[MAX_OPERATION_NUMBERS], char outSecondNumber[MAX_OPERATION_NUMBERS]);
@@ -11,7 +13,7 @@ void filterValidCharacter(const char target[], const int size, char outString[])
 void removeExtraDots(const char target[], const int size, char outString[]);
 double compleateDecimalNumber(const char stringNumber[MAX_OPERATION_NUMBERS]);
 
-void extractExpression(const char expression[EXPRESSION_SIZE]) {
+void extractMathematicalExpression(const char expression[EXPRESSION_SIZE], double* outFirstNumber, char* outOperation, double* outSecondNumber) {
     int usedSize = getArrayUsedSize(expression, '\n');
     int operatorIndex = findOperationSign(expression, usedSize);
     char operation = expression[operatorIndex];
@@ -30,11 +32,14 @@ void extractExpression(const char expression[EXPRESSION_SIZE]) {
     removeExtraDots(filteredPart1, MAX_OPERATION_NUMBERS, formattedStringPart1);
     removeExtraDots(filteredPart2, MAX_OPERATION_NUMBERS, formattedStringPart2);
 
-    double firstNumber = parseNumber(formattedStringPart1);
-    double secondNumber = parseNumber(formattedStringPart2); 
+    *outFirstNumber = parseStringToNumber(formattedStringPart1);
+    *outOperation = operation;
+    *outSecondNumber = parseStringToNumber(formattedStringPart2);
+
+    return;
 }
 
-double parseNumber(const char stringNumber[MAX_OPERATION_NUMBERS]) {
+double parseStringToNumber(const char stringNumber[MAX_OPERATION_NUMBERS]) {
     bool firstPositionIsADot = stringNumber[0] == '.';
     bool isStringJustDot = firstPositionIsADot && stringNumber[1] == '\n';
     bool isStringEmpty = stringNumber == "";
@@ -50,6 +55,9 @@ double parseNumber(const char stringNumber[MAX_OPERATION_NUMBERS]) {
     return strtod(stringNumber, NULL);
 }
 
+void parseNumberToString(const double number, char outStringNumber[MAX_OPERATION_NUMBERS]) {
+    snprintf(outStringNumber, MAX_OPERATION_NUMBERS, "%f", number);
+}
 
 int findOperationSign(const char expression[EXPRESSION_SIZE], const int size) {
     for (int i = 0; i < size; i++) {
@@ -134,5 +142,5 @@ double compleateDecimalNumber(const char stringNumber[MAX_OPERATION_NUMBERS]) {
         lastPosition = temp;
     }
 
-    return strtod(stringNumberCopy, NULL); // TODO: see how to parse 0.x numbers
+    return strtod(stringNumberCopy, NULL);
 }

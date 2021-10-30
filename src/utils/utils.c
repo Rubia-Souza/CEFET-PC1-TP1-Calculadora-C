@@ -1,5 +1,6 @@
 #include <stdbool.h>
 #include "constants.h"
+
 #include "utils.h"
 
 int getArrayUsedSize(const char expression[EXPRESSION_SIZE], const char finalIndicator) {
