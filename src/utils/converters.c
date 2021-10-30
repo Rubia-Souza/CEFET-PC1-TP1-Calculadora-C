@@ -16,7 +16,14 @@ double compleateDecimalNumber(const char stringNumber[MAX_OPERATION_NUMBERS]);
 void extractMathematicalExpression(const char expression[EXPRESSION_SIZE], double* outFirstNumber, char* outOperation, double* outSecondNumber) {
     int usedSize = getArrayUsedSize(expression, '\n');
     int operatorIndex = findOperationSign(expression, usedSize);
-    char operation = expression[operatorIndex];
+
+    char operation;
+    if (operatorIndex > -1) {
+        operation = expression[operatorIndex];
+    }
+    else {
+        operation = '\000';
+    }
 
     char part1[MAX_OPERATION_NUMBERS] = "";
     char part2[MAX_OPERATION_NUMBERS] = "";
