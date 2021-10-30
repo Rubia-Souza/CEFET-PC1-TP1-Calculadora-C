@@ -4,9 +4,14 @@
 #define VALID_YES_SIZE 2
 #define VALID_NO_SIZE 2
 #define VALID_OPERATIONS_SIZE 8
+#define VALID_CHARACTERS_SIZE 12
+
+#define DEFAULT_LOCALE '' // TODO setup the defualt locale
 
 extern const char VALID_YES[VALID_YES_SIZE];
 
 extern const char VALID_NO[VALID_NO_SIZE];
 
 extern const char VALID_OPERATIONS[VALID_OPERATIONS_SIZE];
+
+extern const char VALID_CHARACTERS[VALID_CHARACTERS_SIZE];
