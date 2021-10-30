@@ -48,6 +48,7 @@ int main() {
 
 void getUserInput(char outExpression[EXPRESSION_SIZE]) {
     printf("Digite a expressão: ");
+    fflush(stdin);
     fgets(outExpression, EXPRESSION_SIZE, stdin);
     printf("\n");
 
@@ -92,6 +93,7 @@ bool askForNextInteration() {
 
     while (true) {
         printf("Você deseja digitar outra expressão (s/n)? ");
+        fflush(stdin);
         scanf("%c", &shouldContinue);
         getchar();
 
