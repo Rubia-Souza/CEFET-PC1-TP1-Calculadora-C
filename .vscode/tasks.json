@@ -7,10 +7,11 @@
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
+                "${fileDirname}\\utils\\constants.h",
+                "${fileDirname}\\utils\\constants.c",
                 "${file}",
                 "-o",
                 "${fileDirname}\\${fileBasenameNoExtension}.exe",
-                "${fileDirname}\\utils\\constants.c"
             ],
             "options": {
                 "cwd": "C:\\msys64\\mingw64\\bin"
